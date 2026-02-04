@@ -1,58 +1,88 @@
-# 🧙 LootManager API
+# LootManager API
 
-Backend API para gerenciamento de jogadores e drops de loot, inspirada em sistemas de loot de jogos MMORPG (ex: World of Warcraft).
-
-O projeto foi desenvolvido com foco em **boas práticas de arquitetura**, separação de responsabilidades, escalabilidade e organização de código, servindo tanto como projeto de estudo quanto como base real para aplicações maiores.
+Backend system for managing raid loot distribution, drops, and player allocation rules.  
+Designed as a structured system focused on domain modeling, business rules, and scalable backend architecture.
 
 ---
 
-## 🚀 Tecnologias
+## 🚀 Tech Stack
 
-- Java 21
-- Spring Boot 3+
-- Spring Data JPA
-- Hibernate
+- Java 17+
+- Spring Boot
+- Spring Security (JWT)
+- JPA / Hibernate
 - PostgreSQL
 - Maven
-- Jakarta Validation
-- Lombok
-- REST API
-- Postman (testes)
+- Docker
+- OpenAPI / Swagger
 
 ---
 
-## 🧱 Arquitetura
+## 🧠 Project Context
 
-Estrutura baseada em camadas (padrão de mercado):
+LootManager is a backend system designed to organize raid events, dropped items, and loot distribution rules.
 
-controller -> API / REST
-service -> Regras de negócio
-repository -> Acesso a dados
-dto -> Transporte de dados
-entity -> Modelo de domínio
-config -> Configurações
+Although inspired by MMORPG raid environments, the project is structured as a **real-world system**, focusing on:
+
+- Domain modeling
+- Business rules
+- Resource distribution
+- Process management
+- System architecture
+- Data consistency
+- Clean API design
 
 ---
 
-## 📦 Módulos atuais
+## ⚙️ Core Features
 
-### 👤 Player
+- Player management
+- Guild management
+- Raid management
+- Boss tracking
+- Item registration
+- Drop tracking
+- Loot distribution rules
+- Distribution history
+- Audit logs
+- Business rule validations
 
-- Cadastro de jogador
-- Listagem de jogadores
+---
 
-### 🎁 Loot
+## 🏗️ Architecture
 
-- Registro de drops
-- Associação com jogadores
-- Histórico de drops
-- Base para sistema de loot (em evolução)
+- RESTful API
+- Layered architecture (Controller, Service, Repository)
+- DTO-based communication
+- Domain-driven modeling
+- Clean separation of concerns
+- Business rules centralized in services
+- Scalable project structure
+
+---
+
+## ▶️ How to Run
+
+### Requirements
+
+- Java 17+
+- Maven
+- PostgreSQL
+- Docker (optional)
+
+### Steps
+
+```bash
+git clone https://github.com/robsonmonteirolacerda/spring-boot-lootmanager-api.git
+cd spring-boot-lootmanager-api
+mvn spring-boot:run
+```
 
 ---
 
 👨‍💻 Autor
 
-Robson Monteiro
+Robson Monteiro Lacerda
 Desenvolvedor Backend Java | Spring Boot | Arquitetura de Sistemas
 
 GitHub: https://github.com/robsonmonteirolacerda
