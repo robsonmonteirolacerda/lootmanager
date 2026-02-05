@@ -7,7 +7,7 @@ Designed as a structured system focused on domain modeling, business rules, and 
 
 ## 🚀 Tech Stack
 
-- Java 17+
+- Java 21
 - Spring Boot
 - Spring Security (JWT)
 - JPA / Hibernate
