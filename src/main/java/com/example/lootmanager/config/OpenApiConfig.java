@@ -9,12 +9,11 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
 
     @Bean
-    public OpenAPI lootManagerOpenAPI() {
+    public OpenAPI customOpenAPI() {
         return new OpenAPI()
-                .info(new Info()
-                        .title("LootManager API")
-                        .description("API para gerenciamento de loots de raids (WoW)")
-                        .version("v1.0.0")
-                );
+            .info(new Info()
+                .title("LootManager API")
+                .version("v1")
+                .description("API de gerenciamento de loot de raid (WoW)"));
     }
 }

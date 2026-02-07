@@ -53,12 +53,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    // 🔴 Erro genérico
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiErrorResponse> handleGenericException(
-            Exception ex,
-            HttpServletRequest request
-    ) {
+        public ResponseEntity<ApiErrorResponse> handleGenericException(
+                Exception ex,
+                HttpServletRequest request
+        ) {
+
+        // ⚠️ deixa swagger propagar erro real
+        if (request.getRequestURI().startsWith("/v3/api-docs")) {
+                throw new RuntimeException(ex);
+        }
+
         ApiErrorResponse response = new ApiErrorResponse(
                 false,
                 "Erro interno no servidor",
@@ -66,5 +71,6 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-    }
+        }
+
 }
