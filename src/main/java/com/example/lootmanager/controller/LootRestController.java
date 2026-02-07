@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.*;
 import com.example.lootmanager.response.ApiSuccessResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
+
 
 import java.util.List;
 
+@Tag(name = "Loot", description = "Gerenciamento de players e loots")
 @RestController
-@RequestMapping("/api/loot")
+@RequestMapping("/api/v1/loot")
 public class LootRestController {
 
     private final PlayerService playerService;
@@ -23,37 +27,25 @@ public class LootRestController {
         this.playerService = playerService;
     }
 
-    // CREATE PLAYER
-    @PostMapping("/player")
-    public ResponseEntity<ApiSuccessResponse<Player>> createPlayer(
-            @RequestBody @Valid PlayerRequestDTO dto,
+    @Operation(summary = "Criar player", description = "Cria um novo player no sistema")
+    @PostMapping("/players")
+    public ApiSuccessResponse<Player> createPlayer(
+            @Valid @RequestBody PlayerRequestDTO dto,
             HttpServletRequest request
     ) {
         Player player = playerService.create(dto);
 
-        ApiSuccessResponse<Player> response = new ApiSuccessResponse<>(
-                "Player criado com sucesso",
+        return ApiSuccessResponse.created(
                 player,
                 request.getRequestURI()
         );
-
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
-    // LIST PLAYERS
+    @Operation(summary = "Listar players", description = "Lista todos os players cadastrados")
     @GetMapping("/players")
-    public ResponseEntity<ApiSuccessResponse<List<Player>>> listPlayers(
-            HttpServletRequest request
-    ) {
+    public ApiSuccessResponse<List<Player>> listPlayers(HttpServletRequest request) {
         List<Player> players = playerService.findAll();
 
-        ApiSuccessResponse<List<Player>> response = new ApiSuccessResponse<>(
-                "Lista de players carregada com sucesso",
-                players,
-                request.getRequestURI()
-        );
-
-        return ResponseEntity.ok(response);
+        return ApiSuccessResponse.ok(players, request.getRequestURI());
     }
 }
-
